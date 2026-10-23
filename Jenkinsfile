@@ -10,6 +10,13 @@ pipeline {
                 '''
             }
         }
+    
+    stage('Seguridad') {
+        steps {
+            sh 'bandit -ll app.py'
+            sh 'pip-audit -r requirements.txt'
+            }
+        }
 
         stage('Test') {
             steps {
